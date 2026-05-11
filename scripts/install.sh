@@ -3,45 +3,35 @@ set -eu
 
 REPO_URL="${SQUAREZERO_REPO_URL:-https://github.com/nejcokorn/squarezero.git}"
 TARGET_DIR="${SQUAREZERO_TARGET_DIR:-.ai-guidelines}"
-MEMORY_FILE="${SQUAREZERO_MEMORY_FILE:-.ai-guidelines/ai-project-memory.md}"
+MEMORY_FILE="${SQUAREZERO_MEMORY_FILE:-AI_PROJECT_MEMORY.md}"
 AGENTS_FILE="${SQUAREZERO_AGENTS_FILE:-AGENTS.md}"
 BRANCH="${SQUAREZERO_BRANCH:-main}"
-TMP_DIR=""
+OLD_MEMORY_FILE="$TARGET_DIR/ai-project-memory.md"
 
-cleanup() {
-  if [ -n "$TMP_DIR" ] && [ -d "$TMP_DIR" ]; then
-    rm -rf "$TMP_DIR"
-  fi
-}
-
-trap cleanup EXIT INT TERM
-
-if [ -e "$TARGET_DIR/.git" ]; then
-  echo "$TARGET_DIR is a Git repository or submodule. Update it with git instead."
+if ! command -v git >/dev/null 2>&1; then
+  echo "git is required to install SquareZero guidelines."
   exit 1
 fi
 
-if command -v git >/dev/null 2>&1; then
-  TMP_DIR="$(mktemp -d)"
-  git clone --depth 1 --branch "$BRANCH" "$REPO_URL" "$TMP_DIR/squarezero" >/dev/null 2>&1 || {
-    echo "Failed to clone $REPO_URL branch $BRANCH."
-    exit 1
-  }
-  rm -rf "$TMP_DIR/squarezero/.git"
-  if [ -f "$MEMORY_FILE" ]; then
-    mkdir -p "$TMP_DIR/preserve"
-    cp "$MEMORY_FILE" "$TMP_DIR/preserve/ai-project-memory.md"
-  fi
+if ! git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+  git init >/dev/null
+  echo "Initialized Git repository."
+fi
+
+if [ -f "$OLD_MEMORY_FILE" ] && [ ! -f "$MEMORY_FILE" ]; then
+  mkdir -p "$(dirname "$MEMORY_FILE")"
+  cp "$OLD_MEMORY_FILE" "$MEMORY_FILE"
+  echo "Migrated $OLD_MEMORY_FILE to $MEMORY_FILE."
+fi
+
+if git config -f .gitmodules --get "submodule.$TARGET_DIR.path" >/dev/null 2>&1; then
+  git submodule update --init --recursive "$TARGET_DIR"
+elif [ -e "$TARGET_DIR" ]; then
+  echo "Replacing existing $TARGET_DIR with a SquareZero Git submodule."
   rm -rf "$TARGET_DIR"
-  mkdir -p "$TARGET_DIR"
-  cp -R "$TMP_DIR/squarezero/." "$TARGET_DIR/"
-  if [ -f "$TMP_DIR/preserve/ai-project-memory.md" ]; then
-    mkdir -p "$(dirname "$MEMORY_FILE")"
-    cp "$TMP_DIR/preserve/ai-project-memory.md" "$MEMORY_FILE"
-  fi
+  git submodule add -b "$BRANCH" "$REPO_URL" "$TARGET_DIR"
 else
-  echo "git is required to install SquareZero guidelines."
-  exit 1
+  git submodule add -b "$BRANCH" "$REPO_URL" "$TARGET_DIR"
 fi
 
 mkdir -p "$(dirname "$MEMORY_FILE")"
@@ -92,13 +82,14 @@ Before making implementation changes, read and follow the SquareZero guidelines:
 5. `.ai-guidelines/04-security.md`
 6. `.ai-guidelines/05-code-quality.md`
 7. `.ai-guidelines/06-local-project-memory.md`
-8. `.ai-guidelines/scenarios/`
-9. `.ai-guidelines/architecture/`
-10. `.ai-guidelines/prompts/implementation-checklist.md`
+8. `.ai-guidelines/doc/documentation.md`
+9. `.ai-guidelines/scenarios/`
+10. `.ai-guidelines/architecture/`
+11. `.ai-guidelines/prompts/implementation-checklist.md`
 
-Also read `.ai-guidelines/ai-project-memory.md` before choosing architecture,
-folder structure, or integration points. Update it when the user agrees to a
-durable project-level decision.
+Also read `AI_PROJECT_MEMORY.md` before choosing architecture, folder structure,
+or integration points. Update it when the user agrees to a durable project-level
+decision.
 
 These guidelines are mandatory unless the user explicitly overrides them.
 <!-- squarezero:end -->
@@ -131,6 +122,6 @@ else
   } >> "$AGENTS_FILE"
 fi
 
-echo "SquareZero installed into $TARGET_DIR."
+echo "SquareZero installed as a Git submodule in $TARGET_DIR."
 echo "Updated $AGENTS_FILE."
 echo "Project memory: $MEMORY_FILE."

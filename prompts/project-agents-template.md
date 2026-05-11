@@ -18,9 +18,10 @@ Before making implementation changes, read and follow the SquareZero guidelines:
 5. `.ai-guidelines/04-security.md`
 6. `.ai-guidelines/05-code-quality.md`
 7. `.ai-guidelines/06-local-project-memory.md`
-8. `.ai-guidelines/scenarios/`
-9. `.ai-guidelines/architecture/`
-10. `.ai-guidelines/prompts/implementation-checklist.md`
+8. `.ai-guidelines/doc/documentation.md`
+9. `.ai-guidelines/scenarios/`
+10. `.ai-guidelines/architecture/`
+11. `.ai-guidelines/prompts/implementation-checklist.md`
 
 These guidelines are mandatory unless the user explicitly overrides them.
 
@@ -28,13 +29,13 @@ These guidelines are mandatory unless the user explicitly overrides them.
 
 Before making implementation changes, also read:
 
-- `.ai-guidelines/ai-project-memory.md`
+- `AI_PROJECT_MEMORY.md`
 
 If the file does not exist, create it when the user makes a durable project
 decision.
 
-Update `.ai-guidelines/ai-project-memory.md` whenever the user agrees to a project-level
-decision that should affect future prompts. Examples:
+Update `AI_PROJECT_MEMORY.md` whenever the user agrees to a project-level decision
+that should affect future prompts. Examples:
 
 - The project is a backend-only service.
 - The backend lives in one folder and the frontend lives in another folder.

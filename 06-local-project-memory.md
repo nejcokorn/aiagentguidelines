@@ -6,11 +6,11 @@ file.
 Recommended path:
 
 ```text
-.ai-guidelines/ai-project-memory.md
+AI_PROJECT_MEMORY.md
 ```
 
 This file belongs to the target project, not to the shared SquareZero guideline
-repository.
+repository or `.ai-guidelines` submodule.
 
 ## Purpose
 
@@ -33,11 +33,11 @@ Before implementing, the agent should:
 
 1. Read the repository `AGENTS.md`.
 2. Read the SquareZero guideline files referenced by `AGENTS.md`.
-3. Read `.ai-guidelines/ai-project-memory.md` if it exists.
+3. Read `AI_PROJECT_MEMORY.md` if it exists.
 4. Apply project memory as project-specific guidance.
 
 After discussing or implementing a durable decision, the agent should update
-`.ai-guidelines/ai-project-memory.md`.
+`AI_PROJECT_MEMORY.md`.
 
 ## Priority
 
@@ -49,7 +49,7 @@ When instructions conflict, apply them in this order:
 1. The user's latest explicit instruction
 2. Target project `AGENTS.override.md`
 3. Target project `AGENTS.md`
-4. Target project local memory, usually `.ai-guidelines/ai-project-memory.md`
+4. Target project local memory, usually `AI_PROJECT_MEMORY.md`
 5. SquareZero guideline files
 6. Existing codebase conventions
 
@@ -130,7 +130,7 @@ Example:
 
 - Backend project: `portaldom-api/`
 - Frontend project: `portaldom-web/`
-- Shared guidelines: `.ai-guidelines/ai-guidelines/`
+- Shared guidelines: `.ai-guidelines/`
 
 ## Integration
 

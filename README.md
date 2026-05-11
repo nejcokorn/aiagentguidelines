@@ -20,7 +20,7 @@ When instructions conflict, apply them in this order:
 1. The user's latest explicit instruction
 2. Target project `AGENTS.override.md`
 3. Target project `AGENTS.md`
-4. Target project local memory, usually `.ai-guidelines/ai-project-memory.md`
+4. Target project local memory, usually `AI_PROJECT_MEMORY.md`
 5. SquareZero guideline files
 6. Existing codebase conventions
 

@@ -23,10 +23,11 @@ Recommended target project structure:
 
 ```text
 AGENTS.md
+AI_PROJECT_MEMORY.md
 .ai-guidelines/
 ```
 
-Use `.ai-guidelines/` for the SquareZero files:
+Use `.ai-guidelines/` as the SquareZero Git submodule:
 
 ```text
 .ai-guidelines/README.md
@@ -48,10 +49,11 @@ Before making implementation changes, read and follow the SquareZero guidelines:
 - `.ai-guidelines/04-security.md`
 - `.ai-guidelines/05-code-quality.md`
 - `.ai-guidelines/06-local-project-memory.md`
+- `.ai-guidelines/doc/documentation.md`
 - `.ai-guidelines/scenarios/`
 - `.ai-guidelines/architecture/`
 - `.ai-guidelines/prompts/implementation-checklist.md`
-- `.ai-guidelines/ai-project-memory.md`
+- `AI_PROJECT_MEMORY.md`
 
 These guidelines are mandatory unless the user explicitly overrides them.
 ```
@@ -62,7 +64,7 @@ copying all guideline content into one large instruction file.
 The target project should also keep a local project memory file:
 
 ```text
-.ai-guidelines/ai-project-memory.md
+AI_PROJECT_MEMORY.md
 ```
 
 This file records durable project-specific decisions.
@@ -77,15 +79,16 @@ curl -fsSL https://raw.githubusercontent.com/nejcokorn/squarezero/main/scripts/i
 
 The installer will:
 
-- download or update SquareZero in `.ai-guidelines/`
-- create `.ai-guidelines/ai-project-memory.md` if it does not exist
+- initialize Git in the target project if needed
+- install or update SquareZero as a Git submodule in `.ai-guidelines/`
+- create `AI_PROJECT_MEMORY.md` if it does not exist
 - create or update `AGENTS.md`
 - preserve existing `AGENTS.md` content outside the SquareZero managed block
-- preserve `.ai-guidelines/ai-project-memory.md` during updates
+- migrate an old `.ai-guidelines/ai-project-memory.md` file to
+  `AI_PROJECT_MEMORY.md` when present
 
-The installer replaces the rest of `.ai-guidelines/` with the latest SquareZero
-files. Keep project-specific notes in `.ai-guidelines/ai-project-memory.md`, not
-inside the shared guideline files.
+The installer keeps project-specific notes in `AI_PROJECT_MEMORY.md`, not inside
+the `.ai-guidelines/` submodule.
 
 To use a different branch, repository, or target path:
 
@@ -93,7 +96,7 @@ To use a different branch, repository, or target path:
 SQUAREZERO_BRANCH=main \
 SQUAREZERO_REPO_URL=https://github.com/nejcokorn/squarezero.git \
 SQUAREZERO_TARGET_DIR=.ai-guidelines \
-SQUAREZERO_MEMORY_FILE=.ai-guidelines/ai-project-memory.md \
+SQUAREZERO_MEMORY_FILE=AI_PROJECT_MEMORY.md \
 SQUAREZERO_AGENTS_FILE=AGENTS.md \
 sh /path/to/squarezero/scripts/install.sh
 ```
@@ -104,25 +107,16 @@ When running the script from a local clone of SquareZero instead of `curl`, use:
 sh /path/to/squarezero/scripts/install.sh
 ```
 
-## Option 1: Copy The Guidelines
+## Option 1: Git Submodule
 
-Copy this repository into the target project.
+Use a Git submodule when you want one central SquareZero repository shared across
+many projects.
 
 Target paths:
 
 ```text
 .ai-guidelines/
 ```
-
-This is the simplest and most reliable setup because the guidelines are local to
-the project.
-
-Tradeoff: updates must be copied manually.
-
-## Option 2: Git Submodule
-
-Use a Git submodule when you want one central SquareZero repository shared across
-many projects.
 
 Example:
 
@@ -137,20 +131,30 @@ After cloning a project that uses the submodule:
 git submodule update --init --recursive
 ```
 
-Tradeoff: contributors and agents need the submodule initialized before the
-guidelines are available locally.
-
 The target project should still contain a root `AGENTS.md` that points to the
 submodule path. AI Agent will not automatically treat arbitrary linked
 documentation as project instructions unless a discovered instruction file tells
 it where to look.
 
+Keep target-project memory in `AI_PROJECT_MEMORY.md`, not inside the submodule.
+
+## Option 2: Copy The Guidelines
+
+Copy this repository into the target project only when Git submodules are not an
+option.
+
+Target paths:
+
+```text
+.ai-guidelines/
+```
+
+Tradeoff: updates must be copied manually.
+
 ## Option 3: External Repository Reference
 
 You can reference the SquareZero repository URL from another project, but this is
 less reliable.
-
-Example:
 
 ```md
 Before implementation, read and follow:
@@ -182,8 +186,8 @@ Minimal content:
 Before making changes, read `.ai-guidelines/README.md` and follow the
 implementation reading order defined there.
 
-Also read `.ai-guidelines/ai-project-memory.md` if it exists. Update it when the user
-agrees to a durable project-level decision.
+Also read `AI_PROJECT_MEMORY.md` if it exists. Update it when the user agrees to
+a durable project-level decision.
 
 Do not skip the relevant scenario and architecture files.
 ```

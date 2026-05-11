@@ -24,7 +24,7 @@ These rules apply to every product type unless a scenario file overrides them.
 ## Durable Project Decisions
 
 - Record durable project-level decisions in the target project's local memory
-  file, usually `.ai-guidelines/ai-project-memory.md`.
+  file, usually `AI_PROJECT_MEMORY.md`.
 - Update local project memory when the user agrees to architecture, folder,
   integration, authentication, deployment, or command conventions.
 - Use local project memory in future prompts before choosing folder structure,
