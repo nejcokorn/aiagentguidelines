@@ -1,0 +1,152 @@
+# Setup Guide
+
+This is for setting up Square0 guidelines in another repository.
+Implementation agents should not treat this file as product, architecture, UI,
+or security guidance.
+
+## Goal
+
+Make the Square0 guidelines available inside another project so an AI agent can
+read and follow them before implementation work starts.
+
+## Recommended Setup
+
+The most reliable approach for AI Agent is to keep a short `AGENTS.md` file in the
+root of every project that uses these guidelines.
+
+AI Agent discovers `AGENTS.md` automatically. It reads global instructions first,
+then project instructions from the repository root down to the current working
+directory. Instructions closer to the current directory appear later and can
+override earlier guidance.
+
+Recommended target project structure:
+
+```text
+AGENTS.md
+.ai-guidelines/
+```
+
+Use `.ai-guidelines/` for the Square0 files:
+
+```text
+.ai-guidelines/README.md
+```
+
+Then add a short `AGENTS.md` in the project root:
+
+```md
+# AGENTS.md
+
+## Project Instructions
+
+Before making implementation changes, read and follow the Square0 guidelines:
+
+- `.ai-guidelines/README.md`
+- `.ai-guidelines/01-technologies.md`
+- `.ai-guidelines/02-general-product-principles.md`
+- `.ai-guidelines/03-ui-ux-guidelines.md`
+- `.ai-guidelines/04-security.md`
+- `.ai-guidelines/05-code-quality.md`
+- `.ai-guidelines/06-local-project-memory.md`
+- `.ai-guidelines/scenarios/`
+- `.ai-guidelines/architecture/`
+- `.ai-guidelines/prompts/implementation-checklist.md`
+- `.ai-guidelines/ai-project-memory.md`
+
+These guidelines are mandatory unless the user explicitly overrides them.
+```
+
+Keep `AGENTS.md` small. It should point to the guideline files instead of
+copying all guideline content into one large instruction file.
+
+The target project should also keep a local project memory file:
+
+```text
+.ai-guidelines/ai-project-memory.md
+```
+
+This file records durable project-specific decisions.
+
+## Option 1: Copy The Guidelines
+
+Copy this repository into the target project.
+
+Target paths:
+
+```text
+.ai-guidelines/
+```
+
+This is the simplest and most reliable setup because the guidelines are local to
+the project.
+
+Tradeoff: updates must be copied manually.
+
+## Option 2: Git Submodule
+
+Use a Git submodule when you want one central Square0 repository shared across
+many projects.
+
+Example:
+
+```bash
+git submodule add git@github.com:your-org/Square0.git .ai-guidelines
+git submodule update --init --recursive
+```
+
+After cloning a project that uses the submodule:
+
+```bash
+git submodule update --init --recursive
+```
+
+Tradeoff: contributors and agents need the submodule initialized before the
+guidelines are available locally.
+
+The target project should still contain a root `AGENTS.md` that points to the
+submodule path. AI Agent will not automatically treat arbitrary linked
+documentation as project instructions unless a discovered instruction file tells
+it where to look.
+
+## Option 3: External Repository Reference
+
+You can reference the Square0 repository URL from another project, but this is
+less reliable.
+
+Example:
+
+```md
+Before implementation, read and follow:
+https://github.com/your-org/Square0
+```
+
+Tradeoff: the agent may not have network access, may not browse external links,
+or may not automatically fetch the repository.
+
+## Suggested Target Project File
+
+Create this file in projects that use Square0:
+
+```text
+AGENTS.md
+```
+
+Suggested content is available in:
+
+```text
+prompts/project-agents-template.md
+```
+
+Minimal content:
+
+```md
+# AGENTS.md
+
+Before making changes, read `.ai-guidelines/README.md` and follow the
+implementation reading order defined there.
+
+Also read `.ai-guidelines/ai-project-memory.md` if it exists. Update it when the user
+agrees to a durable project-level decision.
+
+Do not skip the relevant scenario and architecture files.
+```
