@@ -9,7 +9,7 @@ Recommended path:
 .ai-guidelines/ai-project-memory.md
 ```
 
-This file belongs to the target project, not to the shared Square0 guideline
+This file belongs to the target project, not to the shared SquareZero guideline
 repository.
 
 ## Purpose
@@ -24,7 +24,7 @@ Examples:
 - The backend and frontend live in separate folders.
 - The frontend should call a specific backend service.
 - The API base path, auth model, tenancy model, or deployment model was agreed.
-- The user chose a convention that overrides the default Square0 guidance.
+- The user chose a convention that overrides the default SquareZero guidance.
 - A project-specific command should be used for linting, tests, or type checks.
 
 ## Agent Behavior
@@ -32,7 +32,7 @@ Examples:
 Before implementing, the agent should:
 
 1. Read the repository `AGENTS.md`.
-2. Read the Square0 guideline files referenced by `AGENTS.md`.
+2. Read the SquareZero guideline files referenced by `AGENTS.md`.
 3. Read `.ai-guidelines/ai-project-memory.md` if it exists.
 4. Apply project memory as project-specific guidance.
 
@@ -41,7 +41,7 @@ After discussing or implementing a durable decision, the agent should update
 
 ## Priority
 
-Local project memory has priority over generic Square0 defaults because it
+Local project memory has priority over generic SquareZero defaults because it
 records decisions already agreed for the target project.
 
 When instructions conflict, apply them in this order:
@@ -50,7 +50,7 @@ When instructions conflict, apply them in this order:
 2. Target project `AGENTS.override.md`
 3. Target project `AGENTS.md`
 4. Target project local memory, usually `.ai-guidelines/ai-project-memory.md`
-5. Square0 guideline files
+5. SquareZero guideline files
 6. Existing codebase conventions
 
 If local project memory conflicts with the current user request, follow the
@@ -71,7 +71,7 @@ Record decisions that are likely to matter later:
 - API conventions
 - local development commands
 - testing commands
-- user-approved deviations from Square0 defaults
+- user-approved deviations from SquareZero defaults
 
 ## What Not To Record
 

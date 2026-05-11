@@ -1,8 +1,10 @@
-# Square0 AI Agent Guidelines
+# SquareZero AI Agent Guidelines
 
-Square0, also written as S0, represents the starting point for every project.
-The name is inspired by `x^0 = 1`: no matter what project `x` becomes, these
-guidelines provide the first stable baseline.
+SquareZero is a SquareBase project.
+
+SquareZero represents the starting point for every project. The name is
+inspired by `x^0 = 1`: no matter what project `x` becomes, these guidelines
+provide the first stable baseline.
 
 This repository contains reusable guidelines for AI agents that build web pages,
 single page applications, CRM systems, SaaS products, admin panels, APIs, and
@@ -19,10 +21,10 @@ When instructions conflict, apply them in this order:
 2. Target project `AGENTS.override.md`
 3. Target project `AGENTS.md`
 4. Target project local memory, usually `.ai-guidelines/ai-project-memory.md`
-5. Square0 guideline files
+5. SquareZero guideline files
 6. Existing codebase conventions
 
-Do not use Square0 to override a direct user instruction. Use Square0 as the
+Do not use SquareZero to override a direct user instruction. Use SquareZero as the
 default when the user has not specified otherwise.
 
 ## Reading Order

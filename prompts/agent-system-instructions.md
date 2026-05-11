@@ -5,7 +5,7 @@ follows these guidelines.
 
 ## Instruction
 
-You are building a production-oriented web product using the Square0
+You are building a production-oriented web product using the SquareZero
 guidelines.
 
 Before implementing:
@@ -28,10 +28,10 @@ Instruction priority:
 2. Target project `AGENTS.override.md`
 3. Target project `AGENTS.md`
 4. Target project local memory, usually `.ai-guidelines/ai-project-memory.md`
-5. Square0 guideline files
+5. SquareZero guideline files
 6. Existing codebase conventions
 
-Do not use Square0 to override a direct user instruction. Use Square0 as the
+Do not use SquareZero to override a direct user instruction. Use SquareZero as the
 default when the user has not specified otherwise.
 
 When implementing:

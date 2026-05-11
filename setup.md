@@ -1,12 +1,12 @@
 # Setup Guide
 
-This is for setting up Square0 guidelines in another repository.
+This is for setting up SquareZero guidelines in another repository.
 Implementation agents should not treat this file as product, architecture, UI,
 or security guidance.
 
 ## Goal
 
-Make the Square0 guidelines available inside another project so an AI agent can
+Make the SquareZero guidelines available inside another project so an AI agent can
 read and follow them before implementation work starts.
 
 ## Recommended Setup
@@ -26,7 +26,7 @@ AGENTS.md
 .ai-guidelines/
 ```
 
-Use `.ai-guidelines/` for the Square0 files:
+Use `.ai-guidelines/` for the SquareZero files:
 
 ```text
 .ai-guidelines/README.md
@@ -39,7 +39,7 @@ Then add a short `AGENTS.md` in the project root:
 
 ## Project Instructions
 
-Before making implementation changes, read and follow the Square0 guidelines:
+Before making implementation changes, read and follow the SquareZero guidelines:
 
 - `.ai-guidelines/README.md`
 - `.ai-guidelines/01-technologies.md`
@@ -84,13 +84,13 @@ Tradeoff: updates must be copied manually.
 
 ## Option 2: Git Submodule
 
-Use a Git submodule when you want one central Square0 repository shared across
+Use a Git submodule when you want one central SquareZero repository shared across
 many projects.
 
 Example:
 
 ```bash
-git submodule add git@github.com:your-org/Square0.git .ai-guidelines
+git submodule add git@github.com:squarebase/squarezero.git .ai-guidelines
 git submodule update --init --recursive
 ```
 
@@ -110,14 +110,14 @@ it where to look.
 
 ## Option 3: External Repository Reference
 
-You can reference the Square0 repository URL from another project, but this is
+You can reference the SquareZero repository URL from another project, but this is
 less reliable.
 
 Example:
 
 ```md
 Before implementation, read and follow:
-https://github.com/your-org/Square0
+https://github.com/squarebase/squarezero
 ```
 
 Tradeoff: the agent may not have network access, may not browse external links,
@@ -125,7 +125,7 @@ or may not automatically fetch the repository.
 
 ## Suggested Target Project File
 
-Create this file in projects that use Square0:
+Create this file in projects that use SquareZero:
 
 ```text
 AGENTS.md

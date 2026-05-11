@@ -1,6 +1,6 @@
 # AGENTS.md
 
-Use this file as the root `AGENTS.md` template in projects that consume Square0
+Use this file as the root `AGENTS.md` template in projects that consume SquareZero
 guidelines.
 
 Keep this file short. AI Agent loads `AGENTS.md` automatically as project
@@ -9,7 +9,7 @@ copying all of them inline.
 
 ## Project Instructions
 
-Before making implementation changes, read and follow the Square0 guidelines:
+Before making implementation changes, read and follow the SquareZero guidelines:
 
 1. `.ai-guidelines/ai-guidelines/README.md`
 2. `.ai-guidelines/ai-guidelines/01-technologies.md`
@@ -41,7 +41,7 @@ decision that should affect future prompts. Examples:
 - A frontend project must call a specific backend project or API base URL.
 - The project uses a specific authentication, authorization, deployment, or
   data ownership model.
-- The user chooses a convention that differs from the default Square0
+- The user chooses a convention that differs from the default SquareZero
   guidelines.
 
 Do not store secrets, credentials, private tokens, or temporary implementation
