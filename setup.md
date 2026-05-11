@@ -90,7 +90,7 @@ many projects.
 Example:
 
 ```bash
-git submodule add git@github.com:squarebase/squarezero.git .ai-guidelines
+git submodule add https://github.com/nejcokorn/squarezero.git .ai-guidelines
 git submodule update --init --recursive
 ```
 
@@ -117,7 +117,7 @@ Example:
 
 ```md
 Before implementation, read and follow:
-https://github.com/squarebase/squarezero
+https://github.com/nejcokorn/squarezero
 ```
 
 Tradeoff: the agent may not have network access, may not browse external links,
