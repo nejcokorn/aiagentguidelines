@@ -73,18 +73,9 @@ AGENTS_BLOCK="$(cat <<'EOF'
 <!-- squarezero:start -->
 ## SquareZero Instructions
 
-Before making implementation changes, read and follow the SquareZero guidelines:
+Before making implementation changes, read and follow:
 
-1. `.ai-guidelines/README.md`
-2. `.ai-guidelines/01-technologies.md`
-3. `.ai-guidelines/02-general-product-principles.md`
-4. `.ai-guidelines/03-ui-ux-guidelines.md`
-5. `.ai-guidelines/04-security.md`
-6. `.ai-guidelines/05-code-quality.md`
-7. `.ai-guidelines/doc/documentation.md`
-8. `.ai-guidelines/scenarios/`
-9. `.ai-guidelines/architecture/`
-10. `.ai-guidelines/prompts/implementation-checklist.md`
+1. `.ai-guidelines/AGENTS.md`
 
 Also read `AI_PROJECT_MEMORY.md` before choosing architecture, folder structure,
 or integration points. Update it when the user agrees to a durable project-level
