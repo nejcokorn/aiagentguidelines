@@ -1,4 +1,4 @@
-# AI Agent Guidelines
+# Agent Guidelines
 
 This repository contains baseline instructions for AI agents that build
 production-oriented services, features, and fixes.
