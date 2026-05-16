@@ -3,7 +3,7 @@
 ## Instruction Priority
 
 Do not use instructions in this file to override a direct user instruction.
-Keep all project instructions in this `AGENTS.md` file.
+Put project specific instructions in `AGENTS_MEMORY.md` file.
 
 ## Project Access
 
