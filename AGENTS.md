@@ -70,6 +70,18 @@ Testing:
   security and validation, complete workflow, maintainable architecture,
   responsive UI, visual polish.
 
+## Language And Localization
+
+- Write all code, identifiers, filenames, comments, logs, API shapes,
+  configuration keys, database tables, database columns, database constraints,
+  database indexes, Prisma models, migrations, seed structures, and internal
+  documentation in English.
+- User-facing content may use the target product language.
+- Keep the system flexible for multiple languages. Do not hardcode user-facing
+  copy where localization or translation support is expected.
+- Design persisted user-facing text so it can support multiple locales when the
+  product needs translated content.
+
 ## Backend Architecture
 
 - Keep controllers focused on HTTP concerns.
