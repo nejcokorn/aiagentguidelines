@@ -12,6 +12,16 @@ Put project specific instructions in `AGENTS_MEMORY.md` file.
   manager, and command conventions.
 - Keep changes scoped to the requested product surface.
 
+## Implementation phases
+
+- Change the code needed for the requested behavior.
+- Run the relevant tests for the changed surface.
+- If tests fail or reveal an issue, update the code and run the relevant tests
+  again.
+- Run the build before considering the work ready.
+- Deploy to the development environment for every change.
+- Commit the completed work after code changes, tests, and build are complete.
+
 ## Required Technology Stack
 
 Use these technologies for new services, features, and fixes unless the
